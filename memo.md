@@ -1,0 +1,58 @@
+2023/8/9
+# 「JavaScriptゲームプログラミング 知っておきたい数学と物理の基本」  田中賢一郎
+
+【概要】
+## 基礎編
+* 速度・加速度
+* 三角関数
+* ベクトル
+* 行列
+
+## 2D編
+* 画像処理ソフト
+* 簡易物理エンジンの実装(Tiny2D.js)
+
+## 3D編
+* 座標→ワイヤーフレーム→面→テクスチャマッピング
+* 簡易3Dビューワの実装
+* 3Dゲームの作成
+
+---
+
+## 速度
+- 速度 = 一定時間に進む距離
+- 距離 = 速度 * 時間
+- setInterval(メイン処理の関数,関数を呼び出す間隔(msec));
+- [一定速度で右方向へ移動するサンプル](./speed0.html)
+- posX += velocityX;
+- setInterval(tick,100);
+- 速度をX方向とY方向に分割すると斜めにも移動できる
+- [矩形を斜めに移動するサンプル](./speed1.html)
+
+## 加速度
+- [加速度のサンプル](./speed2.html)
+- velocityX += accelX;
+- posX += velocityX;
+
+## 重力加速度
+- 重力加速度 = 9.80665m/s^2
+- [重力加速度的サンプル](./speed3.html)
+- [重力加速度を使ったシンプルなゲーム](./speed4.html)
+- velocityY += isFlying ? -accelY : accelY;
+- ↑３項演算子。isFlyingがtrueのときは-accelY、falseのときはaccelYをvelocityYに加算する
+
+## 三角関数
+- 任意の場所を表現する方法にはX-Y座標系のほかに極座標系がある
+- 極座標系では中心からの距離(r)と角度(Θ)で任意の場所を表現する
+- canvasではrとΘで場所を指定することができない→三角関数を使う
+- 角度Θが決まると、cosΘでX、sinΘでYを求めることができる
+- [中心角とsin/cosの値を表示するページ](./trigFunction0.html)
+- 角度とラジアン
+- 360° = 2π(ラジアン)
+- ° = degree*Math.PI/180
+- サイン、コサインカーブ
+- [サインコサインカーブのアニメーション](./trigFunction1.html)
+- [サインカーブ(ラジアン単位2周分)](./trigFunction2.html)
+- [サインカーブ(ラジアン単位2周分)ver.2](./trigFunction3.html)
+- [a boat on waves](./trig-boatOnWaves.html)
+- 
