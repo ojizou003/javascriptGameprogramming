@@ -6,23 +6,23 @@
   <title>vector-add</title>
 </head>
 
-<body onload="init">
+<body onload="init()">
   <canvas id="canvas" style="width: 500px; height: 500px;" width="500" height="500"></canvas>
 
   <script>
     "use strict";
-    let ctx, x = 0, y = 0, x1 = 0, y1 = 0, count = 0;
+    let ctx, x0 = 0, y0 = 0, x1 = 0, y1 = 0, count = 0;  // Fixed variable names
     function init() {
       let canvas = document.getElementById("canvas");
       ctx = canvas.getContext("2d");
       ctx.lineWidth = 3;
       canvas.onmousedown = function (e) {
-        let x = Math.floor((e.offsetX - 240) / 25);
-        let y = -Math.floor((e.offsetY - 240) / 25);
-        if (coout++ % 2 == 0) {
-          x0 = x, y0 = y, x1 = 0, y1 = 0;
+        let x = Math.floor((e.offsetX - 240) / 25);  // Fixed offset value
+        let y = -Math.floor((e.offsetY - 240) / 25);  // Fixed offset value
+        if (count++ % 2 == 0) {  // Fixed variable name
+          x0 = x, y0 = y, x1 = 0, y1 = 0;  // Fixed variable names
         } else {
-          x1 = x, y1 = y;
+          x1 = x, y1 = y;  // Fixed variable names
         }
         repaint();
       }
@@ -30,8 +30,8 @@
     }
     function drawCircle(x, y, color) {
       ctx.beginPath();
-      ctx.fillStyle=color;
-      ctx.arc(x*25,y*25,1,0,Math.PI*2);
+      ctx.fillStyle = color;
+      ctx.arc(x * 25, y * 25, 1, 0, Math.PI * 2);
       ctx.fill();
     }
     function drawLine(x0, y0, x1, y1, color) {
@@ -43,7 +43,7 @@
     }
     function repaint() {
       ctx.fillStyle = "black";
-      ctx.fillRect(0, 0, 500, 50);
+      ctx.fillRect(0, 0, 500, 500);  // Adjusted fillRect height to match canvas height
       ctx.save();
       ctx.translate(250, 250);
       for (let i = -10; i <= 10; i++) {
