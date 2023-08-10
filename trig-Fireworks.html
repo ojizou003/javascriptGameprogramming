@@ -5,21 +5,29 @@
   <meta charset="UTF-8">
   <title>fireworks</title>
   <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+
     #field {
-      width: 800px;
-      height: 600px;
+      width: 100vw;
+      height: 100vh;
+      display: block;
     }
   </style>
 </head>
 
 <body onload="init()">
-  <canvas width="800" height="600" id="field"></canvas>
+  <canvas id="field"></canvas>
   <script>
     let ctx, fires = [];
-    let width = 800, height = 600;
+    let width, height;
+
     function random(limit) {
       return Math.floor(Math.random() * limit);
     }
+
     function Firework(radius, color) {
       this.color = color;
       this.radius = radius;
@@ -43,8 +51,7 @@
           ctx.beginPath();
           ctx.arc(this.x, this.y, 4, 0, Math.PI * 2);
           ctx.fill();
-        }
-        else {
+        } else {
           this.count++;
           for (let t = 0; t < 4; t++) {
             this.scale += 0.06 / this.count;
@@ -65,8 +72,11 @@
       }
       this.initialize();
     }
+
     function init() {
       let canvas = document.getElementById("field");
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
       ctx = canvas.getContext("2d");
       ctx.globalAlpha = 0.3;
       let colors = ["#ff0000", "#ffff00", "#ffffff", "#ff00ff", "#00ff00", "#7F7FFF", "#00ffff"];
@@ -75,17 +85,22 @@
       }
       setInterval(tick, 100);
     }
+
     function tick() {
-      fires.forEach(function(e){ e.move() })
+      fires.forEach(function (e) {
+        e.move();
+      });
       paint();
     }
+
     function paint() {
       ctx.fillStyle = "black";
       ctx.fillRect(0, 0, width, height);
-      fires.forEach(function (e) { e.draw() })
+      fires.forEach(function (e) {
+        e.draw();
+      });
     }
   </script>
-
 </body>
 
 </html>
