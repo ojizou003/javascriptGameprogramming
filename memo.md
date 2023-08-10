@@ -54,5 +54,5 @@
 - [サインコサインカーブのアニメーション](./trigFunction1.html)
 - [サインカーブ(ラジアン単位2周分)](./trigFunction2.html)
 - [サインカーブ(ラジアン単位2周分)ver.2](./trigFunction3.html)
-- [a boat on waves](./trig-boatOnWaves.html)
-- 
+- [波に浮かぶボート](./trig-boatOnWaves.html)
+- [静かに降っている雪](./trig-snow.html)
