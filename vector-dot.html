@@ -40,24 +40,53 @@
   </table>
 
   <script>
-    "use strict"
+    "use strict";
     let ctx, x0 = 0, y0 = 0, x1 = 0, y1 = 0, count = 0;
+
     function init() {
       let canvas = document.getElementById("canvas");
       ctx = canvas.getContext("2d");
       ctx.lineWidth = 3;
-      canvas.onmousedown = function (e) {
-        let x = Math.floor((e.offsetX - 240) / 25);
-        let y = -Math.floor((e.offsetY - 240) / 25);
-        if (count++ % 2 == 0) {
-          x0 = x, y0 = y;
-        } else {
-          x1 = x, y1 = y;
-        }
-        repaint();
-      }
+
+      canvas.addEventListener("touchstart", handleTouch);
+      canvas.addEventListener("mousedown", handleMouseDown);
+
       repaint();
     }
+
+    function handleTouch(event) {
+      event.preventDefault();
+      let touch = event.changedTouches[0];
+      let x = Math.floor((touch.clientX - 240) / 25);
+      let y = -Math.floor((touch.clientY - 240) / 25);
+
+      if (count++ % 2 === 0) {
+        x0 = x;
+        y0 = y;
+      } else {
+        x1 = x;
+        y1 = y;
+      }
+
+      repaint();
+    }
+
+    function handleMouseDown(e) {
+      let x = Math.floor((e.offsetX - 240) / 25);
+      let y = -Math.floor((e.offsetY - 240) / 25);
+
+      if (count++ % 2 === 0) {
+        x0 = x;
+        y0 = y;
+      } else {
+        x1 = x;
+        y1 = y;
+      }
+
+      repaint();
+    }
+
+
     function drawCircle(x, y, color) {
       ctx.beginPath();
       ctx.fillStyle = color;
